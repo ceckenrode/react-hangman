@@ -1,5 +1,11 @@
 var React = require('react');
+
 module.exports = React.createClass({
+  //we swap out class= for className = as class is a reserved word in javascript
+  // we conditionally open and close the modal depending on this.props.open
+  // we can open and close the modal in this component as well as it's parent
+  // since we passed down the parent's toggleModal function as a prop
+  
   render: function() {
     return (
       <div className={"fade " + (this.props.open ? "in" : "") } data-tabindex="-1" role="dialog">

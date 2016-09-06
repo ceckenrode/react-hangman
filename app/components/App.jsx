@@ -6,6 +6,8 @@ var definitions = require('../../lib/definitions');
 require('../stylesheets/app.css');
 
 module.exports = React.createClass({
+  //getInitialState is a built in method to set the components intial state.
+  //this runs once before the component is mounted to the page.
   getInitialState: function() {
     return {
       words: [
@@ -28,12 +30,19 @@ module.exports = React.createClass({
       modalOpen: false
     };
   },
+  //componentWillMount is a lifecyle method that happens after the intial state has
+  //been set and before the component is mounted to the dom
   componentWillMount: function() {
     this.setState({
       currentWord: this.state.words[Math.floor(Math.random() * this.state.words.length)]
     });
+    //here we break out of react to add an event listener to the entire document
+    //react allows for certain 'escape hatches when react itself doesn't offer
+    //a suitable solution
     document.addEventListener('keydown', this.handleUserGuess, false);
   },
+  //Our render function renders the gameInProgress JSX if the game is going on
+  //it renders the gameComplete JSX if the game is over
   render: function() {
     var gameInProgress = (
       <div className="game-container">
@@ -41,8 +50,11 @@ module.exports = React.createClass({
         <p>You have {this.state.guessesLeft} guesses left.</p>
         <span>{this.state.wins} wins </span>
         <span>{this.state.loses} loses </span>
-        <CorrectGuesses lettersGuessed={this.state.lettersGuessed} word={this.state.currentWord}/>
-        <IncorrectGuesses lettersGuessed={this.state.lettersGuessed} />
+        <CorrectGuesses
+          lettersGuessed={this.state.lettersGuessed}
+          word={this.state.currentWord}/>
+        <IncorrectGuesses
+          lettersGuessed={this.state.lettersGuessed} />
         <Modal open={this.state.modalOpen}
           word={this.state.currentWord}
           definition={definitions[this.state.currentWord]}
@@ -59,6 +71,8 @@ module.exports = React.createClass({
     )
     return this.state.gameOver ? gameComplete : gameInProgress;
   },
+  //by convention most people will have custom methods under the render function, any
+  //lifecyle methods are over the render function. this is just one convention, not a rule
   handleUserGuess: function(e) {
     if (e.keyCode < 65 || e.keyCode > 90) {
       return;
