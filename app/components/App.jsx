@@ -65,7 +65,7 @@ module.exports = React.createClass({
       </div>
     );
     var gameComplete = (
-      <div>
+      <div className="game-container">
         <h1>GAME OVER</h1>
         <p>You have {this.state.wins} wins and {this.state.loses} loses</p>
         <button onClick={this.playAgain}>Play Again?</button>
