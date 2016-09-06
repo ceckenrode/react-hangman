@@ -1,3 +1,6 @@
 .game-container {
   text-align: center;
 }
+.current-word {
+  cursor: pointer;
+}

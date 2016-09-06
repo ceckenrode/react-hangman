@@ -46,7 +46,9 @@ module.exports = React.createClass({
   render: function() {
     var gameInProgress = (
       <div className="game-container">
-        <h3 onClick={this.toggleModal}>{this.state.currentWord}</h3>
+        <h3
+          className="current-word"
+          onClick={this.toggleModal}>{this.state.currentWord}</h3>
         <p>You have {this.state.guessesLeft} guesses left.</p>
         <span>{this.state.wins} wins </span>
         <span>{this.state.loses} loses </span>
