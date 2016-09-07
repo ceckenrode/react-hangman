@@ -70,7 +70,7 @@ module.exports = React.createClass({
         <p>You have {this.state.wins} wins and {this.state.loses} loses</p>
         <button onClick={this.playAgain}>Play Again?</button>
       </div>
-    )
+    );
     return this.state.gameOver ? gameComplete : gameInProgress;
   },
   //by convention most people will have custom methods under the render function, any

@@ -1,6 +1,9 @@
 var React = require('react');
 
 module.exports = React.createClass({
+  //we created a displayedWord helper function to return what should
+  //be displayed to the user. There's no need to set this to state and we
+  //never mutate props
   render: function() {
     return (
       <div>
